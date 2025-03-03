@@ -10,13 +10,13 @@ from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import relationship
 
 from core.database import Base
+from models.mixins import IdMixin
+from models.mixins import CreatedAtMixin
 
 
-class User(Base):
+class User(IdMixin, CreatedAtMixin, Base):
     __tablename__ = 'users'
 
-    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-    created_at: Mapped[datetime] = mapped_column(default=func.now())
     username: Mapped[str]
     password_hash: Mapped[str]
     is_admin: Mapped[bool] = mapped_column(default=False)
