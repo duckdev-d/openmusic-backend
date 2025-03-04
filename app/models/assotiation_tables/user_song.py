@@ -5,7 +5,7 @@ from sqlalchemy import ForeignKey
 from core.database import Base
 
 
-user_song = Table(
+UserSong = Table(
     'user_song',
     Base.metadata,
     Column('user_id', ForeignKey('users.id')),
