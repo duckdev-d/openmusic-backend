@@ -2,7 +2,7 @@ from sqlalchemy import Column
 from sqlalchemy import Table
 from sqlalchemy import ForeignKey
 
-from core.database import Base
+from app.core.db import Base
 
 
 UserSong = Table(

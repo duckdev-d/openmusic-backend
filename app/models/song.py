@@ -2,7 +2,7 @@ from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import Mapped
 from sqlalchemy import ForeignKey
 
-from core.database import Base
+from app.core.db import Base
 from models.mixins import IdMixin
 from models.mixins import CreatedAtMixin
 

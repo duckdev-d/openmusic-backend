@@ -4,7 +4,7 @@ from sqlalchemy import func
 from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import Mapped
 
-from core.database import Base
+from app.core.db import Base
 
 
 class IdMixin(object):
