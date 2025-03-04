@@ -12,4 +12,4 @@ class IdMixin(object):
 
 
 class CreatedAtMixin(object):
-    created_at: Mapped[datetime] = mapped_column()
+    created_at: Mapped[datetime] = mapped_column(server_default=func.utcnow())
