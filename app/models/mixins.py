@@ -4,8 +4,6 @@ from sqlalchemy import func
 from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import Mapped
 
-from app.core.db import Base
-
 
 class IdMixin(object):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
