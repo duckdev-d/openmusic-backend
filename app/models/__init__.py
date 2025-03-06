@@ -5,4 +5,5 @@ from models.song import Song
 from models.playlist import Playlist
 from models.assotiation_tables.user_playlist import UserPlaylist
 from models.assotiation_tables.user_song import UserSong
+from models.assotiation_tables.playlist_song import PlaylistSong
 from models.base import Base
