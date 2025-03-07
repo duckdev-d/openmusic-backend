@@ -10,7 +10,7 @@ from app.models.mixins import CreatedAtMixin
 class User(IdMixin, CreatedAtMixin, Base):
     __tablename__ = 'users'
 
-    username: Mapped[str]
+    username: Mapped[str] = mapped_column(unique=True)
     password_hash: Mapped[str]
     is_admin: Mapped[bool] = mapped_column(default=False)
 
