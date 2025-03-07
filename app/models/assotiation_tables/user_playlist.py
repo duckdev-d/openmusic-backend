@@ -2,7 +2,7 @@ from sqlalchemy import Column
 from sqlalchemy import Table
 from sqlalchemy import ForeignKey
 
-from ..base import Base
+from app.models.base import Base
 
 
 UserPlaylist = Table(

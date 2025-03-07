@@ -2,9 +2,9 @@ from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import relationship
 
-from .base import Base
-from .mixins import IdMixin
-from .mixins import CreatedAtMixin
+from app.models.base import Base
+from app.models.mixins import IdMixin
+from app.models.mixins import CreatedAtMixin
 
 
 class User(IdMixin, CreatedAtMixin, Base):
