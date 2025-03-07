@@ -20,7 +20,7 @@ class BaseRepo(Generic[ModelType]):
     def get_by_id(self, id: int) -> ModelType | None:
         return self.db.query(self.entity).where(self.entity.id == id).first()
 
-    def add(self, entity: ModelType) -> ModelType:
+    def create(self, entity: ModelType) -> ModelType:
         self.db.add(entity)
         self.db.commit()
         return entity

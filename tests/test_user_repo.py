@@ -80,8 +80,8 @@ def test_get_by_id_not_existing(user_repo):
     assert result is None
 
 
-def test_add(user_repo, test_db, test_user):
-    result = user_repo.add(test_user)
+def test_create(user_repo, test_db, test_user):
+    result = user_repo.create(test_user)
     user = test_db.query(User).first()
 
     assert result.id == 1
