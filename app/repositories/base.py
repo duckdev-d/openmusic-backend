@@ -1,11 +1,8 @@
-from typing import Type
-
 from sqlalchemy.orm import Session
-from sqlalchemy import Table
 
 
 class BaseRepo:
-    def __init__(self, db: Session, table: Type[Table]):
+    def __init__(self, db: Session, table: object):
         self.db = db
         self.table = table
 
