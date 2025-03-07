@@ -2,7 +2,7 @@ from pydantic_settings import BaseSettings
 from pydantic_settings import SettingsConfigDict
 
 
-class TestSettings(BaseSettings):
+class SampleSettings(BaseSettings):
     DB_HOST: str
     DB_PORT: int
     DB_USER: str
@@ -16,4 +16,4 @@ class TestSettings(BaseSettings):
     model_config = SettingsConfigDict(env_file='.testenv')
 
 
-test_settings = TestSettings()
+test_settings = SampleSettings()
