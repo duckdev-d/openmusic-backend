@@ -1,9 +1,19 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 
+from app.api import api
+from app.core.db import set_db
+from app.core.db import drop_db
 
-app = FastAPI()
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    set_db()
+    yield
+    drop_db()
 
 
-@app.get('/')
-def root():
-    return 'im alright buddy!'
+app = FastAPI(lifespan=lifespan)
+
+app.include_router(api)
