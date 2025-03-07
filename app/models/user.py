@@ -2,13 +2,9 @@ from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import relationship
 
-from models.base import Base
-from models.mixins import IdMixin
-from models.mixins import CreatedAtMixin
-from models.song import Song
-from models.playlist import Playlist
-from models.assotiation_tables.user_song import UserSong
-from models.assotiation_tables.user_playlist import UserPlaylist
+from .base import Base
+from .mixins import IdMixin
+from .mixins import CreatedAtMixin
 
 
 class User(IdMixin, CreatedAtMixin, Base):
@@ -18,5 +14,7 @@ class User(IdMixin, CreatedAtMixin, Base):
     password_hash: Mapped[str]
     is_admin: Mapped[bool] = mapped_column(default=False)
 
-    favourite_songs: Mapped[list[Song]] = relationship(secondary=UserSong)
-    favourite_playlists: Mapped[list[Playlist]] = relationship(secondary=UserPlaylist)
+    favourite_songs: Mapped[list['Song']] = relationship(secondary='user_song')  # type: ignore # noqa: F821
+    favourite_playlists: Mapped[list['Playlist']] = relationship(  # noqa: F821 # type: ignore
+        secondary='user_playlist'
+    )

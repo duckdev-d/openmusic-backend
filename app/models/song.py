@@ -2,9 +2,9 @@ from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import Mapped
 from sqlalchemy import ForeignKey
 
-from models.base import Base
-from models.mixins import IdMixin
-from models.mixins import CreatedAtMixin
+from .base import Base
+from .mixins import IdMixin
+from .mixins import CreatedAtMixin
 
 
 class Song(Base, IdMixin, CreatedAtMixin):
