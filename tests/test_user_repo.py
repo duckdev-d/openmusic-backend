@@ -4,6 +4,9 @@ from sqlalchemy.orm import sessionmaker
 
 from app.repositories.user import UserRepo
 from app.core.test_config import test_settings
+
+#  unsused imports needed for initializing models
+#  and adding them to Base.metadata
 from app.models.playlist import Playlist
 from app.models.user import User
 from app.models.song import Song
