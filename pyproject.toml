@@ -6,7 +6,9 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "fastapi[all]>=0.115.11",
+    "passlib[bcrypt]>=1.7.4",
     "psycopg2>=2.9.10",
+    "pyjwt>=2.10.1",
     "sqlalchemy[asyncio]>=2.0.38",
 ]
 
