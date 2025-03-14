@@ -17,6 +17,8 @@ class Settings(BaseSettings):
     ALGORITHM: str
     ACCESS_TOKEN_EXPIRE_MINUTES: int
 
+    SONGS_DIRECTORY_PATH: str
+
     model_config = SettingsConfigDict(env_file=['.env', '.testenv'])
 
 
