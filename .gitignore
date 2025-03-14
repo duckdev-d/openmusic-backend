@@ -1,4 +1,6 @@
-__pycache__/
+__pycache__
 .venv
 .env
 .coverage
+.vscode
+.pytest_cache
