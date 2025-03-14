@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from app.repositories.user import UserRepo
-from app.core.test_config import test_settings
+from app.core.config import settings
 
 #  unsused imports needed for initializing models
 #  and adding them to Base.metadata
@@ -18,7 +18,7 @@ from app.models.base import Base
 
 @pytest.fixture(scope='function')
 def test_db():
-    db_url = test_settings.DB_URL
+    db_url = settings.DB_URL
     engine = create_engine(db_url)
     Base.metadata.create_all(engine)
     SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
