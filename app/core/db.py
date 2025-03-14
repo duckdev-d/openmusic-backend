@@ -9,7 +9,7 @@ from app.core.config import settings
 
 engine = create_engine(
     url=settings.DB_URL,
-    echo=True,
+    echo=False,
 )
 
 
