@@ -10,6 +10,7 @@ dependencies = [
     "psycopg2-binary>=2.9.10",
     "pyjwt>=2.10.1",
     "sqlalchemy[asyncio]>=2.0.38",
+    "uvicorn>=0.34.0",
 ]
 
 
