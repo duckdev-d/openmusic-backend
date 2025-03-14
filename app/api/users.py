@@ -1,3 +1,5 @@
+from typing import Annotated
+
 from fastapi import APIRouter
 from fastapi import Depends
 from fastapi import Response
@@ -9,6 +11,7 @@ from app.core.db import get_session
 from app.schemas.user import ShowUserSchema
 from app.schemas.user import AddUserSchema
 from app.services.user import UserService
+from app.core.security import get_current_user
 
 
 router = APIRouter(prefix='/users', tags=['users'])
@@ -24,7 +27,11 @@ def create_user(data: AddUserSchema, db: Session = Depends(get_session)):
 
 
 @router.get('/{username}', response_model=ShowUserSchema)
-def get_user_by_username(username: str, db: Session = Depends(get_session)):
+def get_user_by_username(
+    username: str,
+    current_user: Annotated[str, Depends(get_current_user)],
+    db: Session = Depends(get_session),
+):
     user_service = UserService(db)
     user = user_service.get_user_by_username(username)
     if user is None:
