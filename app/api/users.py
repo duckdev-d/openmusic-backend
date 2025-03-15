@@ -26,6 +26,16 @@ def create_user(data: AddUserSchema, db: Session = Depends(get_session)):
         return Response('Username in already occupied', status.HTTP_409_CONFLICT)
 
 
+@router.get('/', response_model=list[ShowUserSchema])
+def get_all_users(
+    current_user: Annotated[str, Depends(get_current_user)],
+    db: Session = Depends(get_session),
+):
+    user_service = UserService(db)
+    users = user_service.get_all_users()
+    return users
+
+
 @router.get('/{username}', response_model=ShowUserSchema)
 def get_user_by_username(
     username: str,
