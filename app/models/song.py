@@ -13,3 +13,4 @@ class Song(Base, IdMixin, CreatedAtMixin):
     user_id: Mapped[int] = mapped_column(ForeignKey('users.id'))
     duration_seconds: Mapped[int]
     title: Mapped[str]
+    relative_file_path: Mapped[str]
