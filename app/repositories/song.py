@@ -3,5 +3,5 @@ from app.models.song import Song
 
 
 class SongRepo(BaseRepo[Song]):
-    def __init__(self, db, entity):
-        super().__init__(db, entity)
+    def __init__(self, db):
+        super().__init__(db, Song)
