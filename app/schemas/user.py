@@ -10,5 +10,4 @@ class AddUserSchema(BaseModel):
 
 class ShowUserSchema(BaseModel):
     username: constr(min_length=3, max_length=30)  # type: ignore
-    password_hash: str
     is_admin: bool = False
