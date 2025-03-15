@@ -1,41 +1,10 @@
 import pytest
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
 
 from app.repositories.user import UserRepo
-from app.core.config import settings
-
-#  unsused imports needed for initializing models
-#  and adding them to Base.metadata
-from app.models.playlist import Playlist  # noqa: F401
 from app.models.user import User
-from app.models.song import Song  # noqa: F401
-from app.models.assotiation_tables.playlist_song import PlaylistSong  # noqa: F401
-from app.models.assotiation_tables.user_playlist import UserPlaylist  # noqa: F401
-from app.models.assotiation_tables.user_song import UserSong  # noqa: F401
-from app.models.base import Base
-
-
-@pytest.fixture(scope='function')
-def test_db():
-    db_url = settings.DB_URL
-    engine = create_engine(db_url)
-    Base.metadata.create_all(engine)
-    SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-    db = SessionLocal()
-    yield db
-    db.close()
-    Base.metadata.drop_all(engine)
-
-
-@pytest.fixture(scope='function')
-def user_repo(test_db):
-    return UserRepo(test_db)
-
-
-@pytest.fixture(scope='function')
-def test_user():
-    return User(username='bob', password_hash='s564dfg8d4s6g4', is_admin=False)
+from tests.conftest import test_db
+from tests.conftest import user_repo
+from tests.conftest import test_user
 
 
 def test_get_all_empty(user_repo):
