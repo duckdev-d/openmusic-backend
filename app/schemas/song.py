@@ -12,6 +12,7 @@ class AddSongSchema(BaseModel):
 class ShowSongSchema(AddSongSchema):
     model_config = ConfigDict(from_attributes=True)
 
+    id: int
     duration_seconds: int
     artist: ShowUserSchema
     title: str
