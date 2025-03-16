@@ -31,3 +31,10 @@ class BaseRepo(Generic[ModelType]):
             self.db.commit()
         except:
             raise Exception('Provided value does not exist')
+
+    def delete_by_id(self, id: int) -> None:
+        try:
+            self.db.delete(self.entity).where(self.entity.id == id)
+            self.db.commit()
+        except:
+            raise Exception(f'Entity with id {id} does not exist')
