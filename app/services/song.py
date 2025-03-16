@@ -9,6 +9,7 @@ from fastapi import UploadFile
 from app.core.config import settings
 from app.repositories.song import SongRepo
 from app.schemas.song import AddSongSchema
+from app.schemas.song import ShowSongSchema
 from app.models.song import Song
 
 
@@ -26,8 +27,7 @@ class SongService:
     @staticmethod
     def _get_song_duration_seconds(file: bytes) -> int:
         file = BytesIO(file)
-        song_duration_milliseconds = MP3(file).info.length
-        song_duration_seconds = song_duration_milliseconds // 1000
+        song_duration_seconds = MP3(file).info.length
         return song_duration_seconds
 
     def _save_song_file(self, file: bytes, rel_path: str) -> None:
@@ -59,3 +59,7 @@ class SongService:
             relative_file_path=rel_path,
         )
         self.repo.create(song_obj)
+
+    def get_all_songs(self) -> list[Song]:
+        songs = self.repo.get_all()
+        return [ShowSongSchema.model_validate(song) for song in songs]
