@@ -1,5 +1,6 @@
 from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import Mapped
+from sqlalchemy.orm import relationship
 from sqlalchemy import ForeignKey
 
 from app.models.base import Base
@@ -14,3 +15,4 @@ class Song(Base, IdMixin, CreatedAtMixin):
     duration_seconds: Mapped[int]
     title: Mapped[str]
     relative_file_path: Mapped[str]
+    artist: Mapped['User'] = relationship()  # type: ignore  # noqa: F821
