@@ -46,4 +46,14 @@ def get_song(
     current_user: Annotated[str, Depends(get_current_user)],
 ):
     song_service = SongService(db)
-    return song_service.get_song_file_by_id(song_id)
+    return song_service.get_song_file(song_id)
+
+
+@router.delete('/', status_code=status.HTTP_204_NO_CONTENT)
+def delete_song(
+    song_id: int,
+    db: Annotated[Session, Depends(get_session)],
+    current_user: Annotated[str, Depends(get_current_user)],
+):
+    song_service = SongService(db)
+    return song_service.delete_song(song_id, current_user)
