@@ -5,6 +5,7 @@ from io import BytesIO
 from sqlalchemy.orm import Session
 from mutagen.mp3 import MP3
 from fastapi import UploadFile
+from fastapi.responses import FileResponse
 
 from app.core.config import settings
 from app.repositories.song import SongRepo
@@ -63,3 +64,9 @@ class SongService:
     def get_all_songs(self) -> list[Song]:
         songs = self.repo.get_all()
         return [ShowSongSchema.model_validate(song) for song in songs]
+
+    def get_song_file_by_id(self, song_id) -> FileResponse:
+        song = self.repo.get_by_id(song_id)
+        rel_path = song.relative_file_path
+        abs_path = self.dir_path + rel_path
+        return FileResponse(abs_path)
