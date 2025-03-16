@@ -31,6 +31,19 @@ def upload_song(
 
 
 @router.get('/', response_model=list[ShowSongSchema])
-def get_all_songs(db: Annotated[Session, Depends(get_session)]):
+def get_all_songs(
+    db: Annotated[Session, Depends(get_session)],
+    current_user: Annotated[str, Depends(get_current_user)],
+):
     song_service = SongService(db)
     return song_service.get_all_songs()
+
+
+@router.get('/{song_id}')
+def get_song(
+    song_id,
+    db: Annotated[Session, Depends(get_session)],
+    current_user: Annotated[str, Depends(get_current_user)],
+):
+    song_service = SongService(db)
+    return song_service.get_song_file_by_id(song_id)
