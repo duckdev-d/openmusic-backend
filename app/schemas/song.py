@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from pydantic import constr
+from pydantic import ConfigDict
 
 from app.schemas.user import ShowUserSchema
 
@@ -9,4 +10,8 @@ class AddSongSchema(BaseModel):
 
 
 class ShowSongSchema(AddSongSchema):
+    model_config = ConfigDict(from_attributes=True)
+
+    duration_seconds: int
     artist: ShowUserSchema
+    title: str
