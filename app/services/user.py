@@ -12,9 +12,7 @@ class UserService:
 
     def add_user(self, data: AddUserSchema) -> User:
         password_hash = get_password_hash(data.password)
-        user_obj = User(
-            username=data.username, password_hash=password_hash, is_admin=data.is_admin
-        )
+        user_obj = User(username=data.username, password_hash=password_hash)
         return self.repo.create(user_obj)
 
     def get_user_by_username(self, username: str) -> User:
