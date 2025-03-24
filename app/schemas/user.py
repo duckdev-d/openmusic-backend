@@ -10,7 +10,7 @@ class ShowUserSchema(BaseModel):
     is_admin: bool = False
 
 
-class AddUserSchema(ShowUserSchema):
+class AddUserSchema(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
     username: constr(min_length=3, max_length=30)  # type: ignore
