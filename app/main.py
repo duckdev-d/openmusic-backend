@@ -12,7 +12,6 @@ from app.core.db import drop_db
 async def lifespan(app: FastAPI):
     set_db()
     yield
-    drop_db()
 
 
 app = FastAPI(lifespan=lifespan)
