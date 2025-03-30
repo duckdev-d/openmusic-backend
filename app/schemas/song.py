@@ -1,8 +1,12 @@
+from typing import TYPE_CHECKING
+
 from pydantic import BaseModel
 from pydantic import constr
 from pydantic import ConfigDict
 
-from app.schemas.user import ShowUserSchema
+
+if TYPE_CHECKING:
+    from app.schemas.user import ShowUserSchema
 
 
 class AddSongSchema(BaseModel):
@@ -14,5 +18,5 @@ class ShowSongSchema(AddSongSchema):
 
     id: int
     duration_seconds: int
-    artist: ShowUserSchema
+    artist: 'ShowUserSchema'
     title: str
