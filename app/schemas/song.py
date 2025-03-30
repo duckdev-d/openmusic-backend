@@ -1,3 +1,4 @@
+from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from pydantic import BaseModel
@@ -20,3 +21,14 @@ class ShowSongSchema(AddSongSchema):
     duration_seconds: int
     artist: 'ShowUserSchema'
     title: str
+
+    @classmethod
+    def model_rebuild(cls):
+        from app.schemas.user import (
+            ShowUserSchema,
+        )
+
+        super().model_rebuild()
+
+
+ShowSongSchema.model_rebuild()
