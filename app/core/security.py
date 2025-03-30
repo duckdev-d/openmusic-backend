@@ -16,6 +16,7 @@ from app.repositories.user import UserRepo
 from app.core.config import settings
 from app.schemas.token import TokenData
 from app.core.db import get_session
+from app.models.user import User
 
 
 EXPIRES_DELTA = settings.ACCESS_TOKEN_EXPIRE_MINUTES
@@ -59,7 +60,7 @@ def create_access_token(data: dict):
 def get_current_user(
     token: Annotated[str, Depends(oauth2_scheme)],
     db: Annotated[Session, Depends(get_session)],
-):
+) -> User:
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail='Could not validate credentials',
