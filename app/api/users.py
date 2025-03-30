@@ -50,3 +50,14 @@ def get_user_by_username(
         )
     print(user)
     return user
+
+
+@router.post('/add-favourite/{song_id}')
+def add_favourite(
+    song_id: int,
+    current_user: Annotated[str, Depends(get_current_user)],
+    db: Session = Depends(get_session),
+):
+    user_service = UserService(db)
+    user_service.add_song_to_favourites(song_id=song_id, user_id=current_user.id)
+    return Response('Done', status.HTTP_201_CREATED)

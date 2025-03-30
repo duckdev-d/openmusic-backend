@@ -20,3 +20,7 @@ class UserService:
 
     def get_all_users(self) -> list[User]:
         return self.repo.get_all()
+
+    def add_song_to_favourites(self, song_id: int, user_id: int) -> None:
+        self.repo.add_favourite(user_id=user_id, song_id=song_id)
+        print(self.repo.db.query(User).where(User.id == user_id).first())
