@@ -10,6 +10,7 @@ from sqlalchemy.exc import IntegrityError
 from app.core.db import get_session
 from app.models.user import User
 from app.schemas.user import ShowUserSchema
+from app.schemas.song import ShowSongSchema
 from app.schemas.user import AddUserSchema
 from app.services.user import UserService
 from app.core.security import get_current_user
@@ -48,7 +49,7 @@ def add_favourite(
     return Response('Done', status.HTTP_201_CREATED)
 
 
-@router.get('/favourite-songs')
+@router.get('/favourite-songs', response_model=list[ShowSongSchema])
 def get_favourite_songs(
     current_user: Annotated[User, Depends(get_current_user)],
     db: Session = Depends(get_session),
