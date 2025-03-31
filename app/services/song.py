@@ -93,5 +93,7 @@ class SongService:
         self._remove_song_file(rel_path)
 
     def search_songs(self, string: str) -> list[ShowSongSchema]:
+        if string == '':
+            return []
         songs = self.repo.search(string)
         return [ShowSongSchema.model_validate(song) for song in songs]
