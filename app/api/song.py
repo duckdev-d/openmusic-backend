@@ -17,7 +17,7 @@ from app.schemas.song import ShowSongSchema
 router = APIRouter(prefix='/songs', tags=['songs'])
 
 
-@router.post('/search', response_model=list[ShowSongSchema])
+@router.get('/search', response_model=list[ShowSongSchema])
 def search_songs(
     search_string: str,
     db: Annotated[Session, Depends(get_session)],
