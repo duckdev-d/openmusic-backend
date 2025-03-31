@@ -17,6 +17,16 @@ from app.schemas.song import ShowSongSchema
 router = APIRouter(prefix='/songs', tags=['songs'])
 
 
+@router.post('/search', response_model=list[ShowSongSchema])
+def search_songs(
+    search_string: str,
+    db: Annotated[Session, Depends(get_session)],
+    current_user: Annotated[str, Depends(get_current_user)],
+):
+    song_service = SongService(db)
+    return song_service.search_songs(search_string)
+
+
 @router.post('/', status_code=status.HTTP_201_CREATED)
 def upload_song(
     file: UploadFile,

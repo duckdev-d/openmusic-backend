@@ -91,3 +91,7 @@ class SongService:
         rel_path = song.relative_file_path
         self.repo.delete(song)
         self._remove_song_file(rel_path)
+
+    def search_songs(self, string: str) -> list[ShowSongSchema]:
+        songs = self.repo.search(string)
+        return [ShowSongSchema.model_validate(song) for song in songs]
