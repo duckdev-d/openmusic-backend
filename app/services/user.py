@@ -28,3 +28,6 @@ class UserService:
 
     def get_favourite_songs(self, user_id) -> list[ShowSongSchema]:
         return self.repo.get_favourite_songs(user_id=user_id)
+
+    def delete_song_from_favourites(self, song_id: int, user_id: int) -> None:
+        self.repo.delete_favourite_song(user_id=user_id, song_id=song_id)

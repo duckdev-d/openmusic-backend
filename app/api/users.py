@@ -58,6 +58,16 @@ def get_favourite_songs(
     return user_service.get_favourite_songs(current_user.id)
 
 
+@router.delete('/favourite-songs', status_code=status.HTTP_204_NO_CONTENT)
+def delete_favourite(
+    song_id: int,
+    current_user: Annotated[User, Depends(get_current_user)],
+    db: Session = Depends(get_session),
+):
+    user_service = UserService(db)
+    user_service.delete_song_from_favourites(song_id=song_id, user_id=current_user.id)
+
+
 @router.get('/{username}', response_model=ShowUserSchema)
 def get_user_by_username(
     username: str,

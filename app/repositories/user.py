@@ -22,3 +22,10 @@ class UserRepo(BaseRepo[User]):
     def get_favourite_songs(self, user_id: int) -> list[Song]:
         user = self.db.query(User).where(User.id == user_id).first()
         return user.favourite_songs
+
+    def delete_favourite_song(self, user_id: int, song_id: int) -> None:
+        query = self.db.query(UserSong).where(
+            UserSong.c.user_id == user_id, UserSong.c.song_id == song_id
+        )
+        query.delete()
+        self.db.commit()
