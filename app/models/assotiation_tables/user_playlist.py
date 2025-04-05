@@ -8,6 +8,6 @@ from app.models.base import Base
 UserPlaylist = Table(
     'user_playlist',
     Base.metadata,
-    Column('user_id', ForeignKey('users.id')),
-    Column('playlist_id', ForeignKey('playlists.id')),
+    Column('user_id', ForeignKey('users.id', ondelete='CASCADE')),
+    Column('playlist_id', ForeignKey('playlists.id', ondelete='CASCADE')),
 )
