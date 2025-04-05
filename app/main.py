@@ -10,7 +10,6 @@ from app.core.db import drop_db
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    set_db()
     yield
 
 
