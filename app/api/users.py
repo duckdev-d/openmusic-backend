@@ -19,7 +19,7 @@ from app.core.security import get_current_user
 router = APIRouter(prefix='/users', tags=['users'])
 
 
-@router.post('/', response_model=ShowUserSchema)
+@router.post('/', response_model=ShowUserSchema, status_code=status.HTTP_201_CREATED)
 def create_user(data: AddUserSchema, db: Session = Depends(get_session)):
     user_service = UserService(db)
     try:
@@ -55,6 +55,7 @@ def get_favourite_songs(
     db: Session = Depends(get_session),
 ):
     user_service = UserService(db)
+    print(user_service.get_favourite_songs(current_user.id))
     return user_service.get_favourite_songs(current_user.id)
 
 
