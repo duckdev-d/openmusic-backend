@@ -4,8 +4,6 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.api import api
-from app.core.db import set_db
-from app.core.db import drop_db
 
 
 @asynccontextmanager
