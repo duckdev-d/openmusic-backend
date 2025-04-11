@@ -1,0 +1,3 @@
+POSTGRES_USER=testuser
+POSTGRES_PASSWORD=testpass
+POSTGRES_DB=openmusic

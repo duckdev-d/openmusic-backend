@@ -1,0 +1,28 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app/app
+      - openmusic_songs_volume:/app/songs
+    env_file:
+      - path: ./.testenv
+        required: false
+      - path: ./.env
+        required: false
+  postgres:
+    image: "postgres"
+    ports:
+      - "5432:5432"
+    volumes:
+      - openmusic_postgres_volume:/var/lib/postgresql/data
+    env_file:
+      - path: ./.testpostgresenv
+        required: false
+      - path: ./.postgresenv
+        required: false
+
+volumes:
+  openmusic_postgres_volume:
+  openmusic_songs_volume:
