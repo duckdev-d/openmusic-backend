@@ -25,4 +25,8 @@ services:
 
 volumes:
   openmusic_postgres_volume:
+    name: openmusic_postgres_volume
+    external: true
   openmusic_songs_volume:
+    name: openmusic_songs_volume
+    external: true
