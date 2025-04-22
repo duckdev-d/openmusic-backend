@@ -11,6 +11,7 @@ services:
         required: false
       - path: ./.env
         required: false
+    restart: always
   postgres:
     image: "postgres"
     ports:
@@ -22,6 +23,7 @@ services:
         required: false
       - path: ./.postgresenv
         required: false
+    restart: always
 
 volumes:
   openmusic_postgres_volume:
